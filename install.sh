@@ -12,4 +12,5 @@ cp $WORKING_DIR/tmux.conf.local ./.tmux.conf.local
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 cp $WORKING_DIR/vimrc ./.vimrc
+vim -c "PlugInstall"
 
