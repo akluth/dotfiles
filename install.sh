@@ -1,7 +1,7 @@
 #!/bin/bash
 
 install_basetools() {
-    BASE_TOOLS='git vim curl tmux'
+    BASE_TOOLS='git vim curl tmux wget gcc'
     PACKAGE_MANAGER=""
 
     # If it's an Debian based distribution...
@@ -38,5 +38,17 @@ install_and_setup_env() {
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 }
 
+install_fonts() {
+    mkdir ~/.fonts
+    
+    wget -O ~/.fonts/MesloGSNFRegular.ttf https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
+    wget -O ~/.fonts/MesloGSNFBold.ttf https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
+    wget -O ~/.fonts/MesloGSNFItalic.ttf https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
+    wget -O ~/.fonts/MesloGSNVBoldItalic.ttf https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
+
+    fc-cache -f
+}
+
 install_basetools
 install_and_setup_env
+install_fonts
