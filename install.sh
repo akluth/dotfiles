@@ -1,13 +1,16 @@
 #!/bin/bash
 
 install_basetools() {
-    BASE_TOOLS='git vim curl tmux wget gcc'
+    BASE_TOOLS='git vim curl tmux wget gcc zsh'
     PACKAGE_MANAGER=""
 
     # If it's an Debian based distribution...
     if [ -f "/etc/debian_version" ]; then
         # ...install base tools via apt
         PACKAGE_MANAGER='apt install -y '
+    elif [ -f "/etc/fedora-release" ]; then
+        # ...it's Fedora! Install eet
+        PACKAGE_MANAGER='yum install -y '
     elif [ command -v pacman &> /dev/null ]; then 
         # ...otherwise it's Arch or Manjaro, do the same with pacman
         PACKAGE_MANAGER='pacman -Syyu --noconfirm '
@@ -32,10 +35,13 @@ install_and_setup_env() {
     vim -c "PlugInstall"
 
     # Install oh-my-zsh
-    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
     # Install powerlevel10k
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+    # Add the powerlevl10k theme to .zshrc - the cheap way
+    echo 'ZSH_THEME="powerlevel10k/powerlevel10k"' >> ~/.zshrc
 }
 
 install_fonts() {
