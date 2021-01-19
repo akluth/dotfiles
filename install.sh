@@ -40,8 +40,8 @@ install_and_setup_env() {
     # Install powerlevel10k
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
-    # Add the powerlevl10k theme to .zshrc - the cheap way
-    echo 'ZSH_THEME="powerlevel10k/powerlevel10k"' >> ~/.zshrc
+    # Copy zshrc to the right place
+    cp ./zshrc ~/.zshrc
 }
 
 install_fonts() {
