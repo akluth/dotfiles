@@ -44,7 +44,7 @@ install_and_setup_env() {
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
     # Copy zshrc to the right place
-    cp ./zshrc $HOME/.zshrc
+    cp $WORKING_DIR/zshrc $HOME/.zshrc
 }
 
 install_fonts() {
