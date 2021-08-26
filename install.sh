@@ -11,9 +11,9 @@ install_basetools() {
     elif [ -f "/etc/fedora-release" ]; then
         # ...it's Fedora! Install eet
         PACKAGE_MANAGER='yum install -y '
-    elif [ command -v pacman &> /dev/null ]; then 
+    elif command -v pacman &> /dev/null; then
         # ...otherwise it's Arch or Manjaro, do the same with pacman
-        PACKAGE_MANAGER='pacman -Syyu --noconfirm '
+        PACKAGE_MANAGER='pacman -Sy --noconfirm '
     fi
 
     sudo $PACKAGE_MANAGER $BASE_TOOLS
